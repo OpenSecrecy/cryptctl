@@ -100,11 +100,11 @@ var editCmd = &cobra.Command{
 		}
 
 		// just a simple hack to remove status field from the yaml
-		re := regexp.MustCompile(`status:[\s\S]*?(?:---|$)`)
-		result := re.ReplaceAllString(string(yamlData), "---")
+		yamlData = creationTimeStampRegexp.ReplaceAll(yamlData, nil)
+		yamlData = statusRegexp.ReplaceAll(yamlData, []byte("---"))
 
 		// finally, write the encryptedSecret yaml
-		err = os.WriteFile(fileName, []byte(result), 0600)
+		err = os.WriteFile(fileName, yamlData, 0600)
 		if err != nil {
 			return fmt.Errorf("error writing EncryptedSecret %s", err)
 		}
