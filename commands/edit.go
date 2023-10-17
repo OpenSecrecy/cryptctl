@@ -104,7 +104,7 @@ var editCmd = &cobra.Command{
 		result := utils.RemoveStatus(newEncrypted)
 
 		// finally, write the encryptedSecret yaml
-		err = os.WriteFile(fileName, []byte(result), 0600)
+		err = os.WriteFile(fileName, result, 0600)
 		if err != nil {
 			return fmt.Errorf("error writing EncryptedSecret %s", err)
 		}
