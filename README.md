@@ -1,7 +1,7 @@
-# `cryptctl` CLI Tool for managing [EncryptedSecrets](https://github.com/shubhindia/encrypted-secrets)
+# `cryptctl` CLI Tool for managing [EncryptedSecrets](https://github.com/opensecrecy/encrypted-secrets)
 
 
-[![Build Status](https://github.com/shubhindia/cryptctl/workflows/CI/badge.svg)](https://github.com/shubhindia/cryptctl/actions?query=workflow%3ACI+branch%3Amain)
+[![Build Status](https://github.com/opensecrecy/cryptctl/workflows/CI/badge.svg)](https://github.com/opensecrecy/cryptctl/actions?query=workflow%3ACI+branch%3Amain)
 [![License](https://img.shields.io/badge/LICENSE-Apache2.0-ff69b4.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 ## Note: `cryptctl` is currently a work in progress and is in the alpha stage. Please use it with caution in production environments.
@@ -27,15 +27,15 @@ Here's a **`cryptctl`** demo:
 
 ## Installation
 
-- Linux: Download the latest release from [here](https://github.com/shubhindia/cryptctl/releases)
+- Linux: Download the latest release from [here](https://github.com/opensecrecy/cryptctl/releases)
 
 - Mac (you can use [Homebrew](https://brew.sh/) to install `cryptctl` on Mac):
 ```bash
-brew tap shubhindia/cryptctl
-brew install shubhindia/cryptctl/cryptctl
+brew tap opensecrecy/cryptctl
+brew install opensecrecy/cryptctl/cryptctl
 ```
 
-- Windows: Download the latest release from [here](https://github.com/shubhindia/cryptctl/releases)
+- Windows: Download the latest release from [here](https://github.com/opensecrecy/cryptctl/releases)
 
 # Usage
 ## Pre-requisites
