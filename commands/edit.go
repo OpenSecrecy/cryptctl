@@ -7,14 +7,14 @@ import (
 	"os/exec"
 	"regexp"
 
-	"github.com/shubhindia/encrypted-secrets/pkg/providers"
+	"github.com/opensecrecy/encrypted-secrets/pkg/providers"
 	"github.com/spf13/cobra"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/apimachinery/pkg/runtime/serializer"
 	"k8s.io/client-go/kubernetes/scheme"
 	"sigs.k8s.io/yaml"
 
-	secretsv1alpha1 "github.com/shubhindia/encrypted-secrets/api/v1alpha1"
+	secretsv1alpha1 "github.com/opensecrecy/encrypted-secrets/api/v1alpha1"
 )
 
 var (

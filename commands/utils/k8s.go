@@ -11,7 +11,7 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/shubhindia/encrypted-secrets/pkg/providers/utils"
+	"github.com/opensecrecy/encrypted-secrets/pkg/providers/utils"
 
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"

@@ -3,7 +3,7 @@ package commands
 import (
 	"fmt"
 
-	"github.com/shubhindia/cryptctl/commands/utils"
+	"github.com/opensecrecy/cryptctl/commands/utils"
 	"github.com/spf13/cobra"
 )
 

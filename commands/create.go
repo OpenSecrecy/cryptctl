@@ -7,7 +7,7 @@ import (
 	"github.com/spf13/cobra"
 	"sigs.k8s.io/yaml"
 
-	secretsv1alpha1 "github.com/shubhindia/encrypted-secrets/api/v1alpha1"
+	secretsv1alpha1 "github.com/opensecrecy/encrypted-secrets/api/v1alpha1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -46,7 +46,7 @@ var createCmd = &cobra.Command{
 
 		// set provider annotation
 		sampleEncryptedSecret.SetAnnotations(map[string]string{
-			"secrets.shubhindia.xyz/provider": Provider,
+			"secrets.opensecrecy.xyz/provider": Provider,
 		})
 
 		// write the contents to yaml

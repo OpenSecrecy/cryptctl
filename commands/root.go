@@ -7,7 +7,7 @@ import (
 	"github.com/spf13/cobra"
 	"k8s.io/client-go/kubernetes/scheme"
 
-	secretsv1alpha1 "github.com/shubhindia/encrypted-secrets/api/v1alpha1"
+	secretsv1alpha1 "github.com/opensecrecy/encrypted-secrets/api/v1alpha1"
 )
 
 var (
@@ -19,7 +19,7 @@ var (
 )
 
 const (
-	SecretApiVersion    = "secrets.shubhindia.xyz/v1alpha1"
+	SecretApiVersion    = "secrets.opensecrecy.xyz/v1alpha1"
 	DecryptedSecretKind = "DecryptedSecret"
 )
 

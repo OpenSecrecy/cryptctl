@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/shubhindia/cryptctl/commands"
+	"github.com/opensecrecy/cryptctl/commands"
 )
 
 func main() {
