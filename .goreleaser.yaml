@@ -1,7 +1,7 @@
 project_name: cryptctl
 release:
   github:
-    owner: shubhindia
+    owner: opensecrecy
     name: cryptctl
 before:
   hooks:
@@ -14,7 +14,7 @@ builds:
       - windows
       - darwin
     ldflags:
-      - -X "github.com/shubhindia/cryptctl/commands.Version={{.Env.VERSION}}"
+      - -X "github.com/opensecrecy/cryptctl/commands.Version={{.Env.VERSION}}"
 
 archives:
   - name_template: "{{ .ProjectName }}-{{ .Version }}-{{ .Os }}-{{ .Arch }}"
@@ -24,11 +24,11 @@ archives:
 brews:
   - name: cryptctl
     tap:
-      owner: shubhindia
+      owner: opensecrecy
       name: homebrew-cryptctl
     commit_author:
       name: shubhindia
       email: shubhindia123@gmail.com
     folder: Formula
-    homepage: "https://github.com/shubhindia/cryptctl"
+    homepage: "https://github.com/opensecrecy/cryptctl"
     description: "CLI for managing secrets to be used with encrypted-secrets"
