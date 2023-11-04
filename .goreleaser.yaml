@@ -23,9 +23,9 @@ archives:
         format: zip
 brews:
   - name: cryptctl
-    tap:
+    repository:
       owner: opensecrecy
-      name: cryptctl-tap
+      name: homebrew-cryptctl
     commit_author:
       name: shubhindia
       email: shubhindia123@gmail.com
