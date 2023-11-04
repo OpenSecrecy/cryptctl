@@ -25,7 +25,7 @@ brews:
   - name: cryptctl
     tap:
       owner: opensecrecy
-      name: homebrew-cryptctl
+      name: cryptctl-tap
     commit_author:
       name: shubhindia
       email: shubhindia123@gmail.com
