@@ -94,8 +94,8 @@ github.com/onsi/ginkgo/v2 v2.13.0 h1:0jY9lJquiL8fcf3M4LAXN5aMlS/b2BV86HFFPCPMgE4
 github.com/onsi/ginkgo/v2 v2.13.0/go.mod h1:TE309ZR8s5FsKKpuB1YAQYBzCaAfUgatB/xlT/ETL/o=
 github.com/onsi/gomega v1.29.0 h1:KIA/t2t5UBzoirT4H9tsML45GEbo3ouUnBHsCfD2tVg=
 github.com/onsi/gomega v1.29.0/go.mod h1:9sxs+SwGrKI0+PWe4Fxa9tFQQBG5xSsSbMXOI8PPpoQ=
-github.com/opensecrecy/encrypted-secrets v0.0.0-20231103102418-38cf16af8c1e h1:82aACfHb9lGC0FPXQ60oQnwDGtKRINHG8y9EA37a20g=
-github.com/opensecrecy/encrypted-secrets v0.0.0-20231103102418-38cf16af8c1e/go.mod h1:6TQbXaLerhtMAx2vAxkdRd9g/clKzNeAFIyUfbAk5hg=
+github.com/opensecrecy/encrypted-secrets v0.1.0 h1:z1KmeZmj+9HrxnXaxfJ6YBo3HsCQx/15766Kvd9n+ZI=
+github.com/opensecrecy/encrypted-secrets v0.1.0/go.mod h1:6TQbXaLerhtMAx2vAxkdRd9g/clKzNeAFIyUfbAk5hg=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/rogpeppe/go-internal v1.10.0 h1:TMyTOH3F/DB16zRVcYyreMH6GnZZrwQVAoYjRBZyWFQ=
