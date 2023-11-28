@@ -6,7 +6,7 @@ require (
 	github.com/aws/aws-sdk-go v1.47.0
 	github.com/aws/aws-sdk-go-v2/config v1.20.0
 	github.com/aws/aws-sdk-go-v2/service/kms v1.25.0
-	github.com/opensecrecy/encrypted-secrets v0.0.0-20231103102418-38cf16af8c1e
+	github.com/opensecrecy/encrypted-secrets v0.1.0
 	github.com/spf13/cobra v1.7.0
 	k8s.io/api v0.28.3
 	k8s.io/apimachinery v0.28.3
