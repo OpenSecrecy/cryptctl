@@ -46,7 +46,7 @@ var createCmd = &cobra.Command{
 
 		// set provider annotation
 		sampleEncryptedSecret.SetAnnotations(map[string]string{
-			"secrets.opensecrecy.xyz/provider": Provider,
+			"secrets.opensecrecy.org/provider": Provider,
 		})
 
 		// write the contents to yaml

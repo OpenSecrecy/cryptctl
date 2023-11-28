@@ -19,7 +19,7 @@ var (
 )
 
 const (
-	SecretApiVersion    = "secrets.opensecrecy.xyz/v1alpha1"
+	SecretApiVersion    = "secrets.opensecrecy.org/v1alpha1"
 	DecryptedSecretKind = "DecryptedSecret"
 )
 
