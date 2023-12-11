@@ -39,8 +39,8 @@ func ParseYaml(filename string) (*Objects, error) {
 		Kind:    "EncryptedSecret",
 	}, nil)
 	if err != nil {
-		if ok, _ := regexp.MatchString("no kind(.*)is registered for version", err.Error()); ok {
-			panic("no kind(.*)is registered for version")
+		if ok, _ := regexp.MatchString("no kind (.*) is registered for version", err.Error()); ok {
+			panic("no kind (.*) is registered for version")
 		}
 		panic(err)
 	}
