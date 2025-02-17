@@ -75,7 +75,7 @@ var editCmd = &cobra.Command{
 		}
 
 		// yamlData holds the final yaml to be written to the file
-		yamlData := []byte{}
+		var yamlData []byte
 
 		newEncrypted, err := yaml.Marshal(&encryptedObj)
 		if err != nil {
