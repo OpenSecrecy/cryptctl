@@ -9,8 +9,6 @@ import (
 
 	"github.com/opensecrecy/encrypted-secrets/pkg/providers"
 	"github.com/spf13/cobra"
-	"k8s.io/apimachinery/pkg/runtime/schema"
-	"k8s.io/apimachinery/pkg/runtime/serializer"
 	"k8s.io/client-go/kubernetes/scheme"
 	"sigs.k8s.io/yaml"
 
@@ -38,33 +36,14 @@ var editCmd = &cobra.Command{
 	},
 	RunE: func(_ *cobra.Command, args []string) error {
 		fileName := args[0]
-		encryptedFile, err := os.ReadFile(fileName)
+		// parse the encryptedSecret
+		objs, err := utils.ParseYaml(fileName)
 		if err != nil {
-			return fmt.Errorf("error reading file %s", err.Error())
-		}
-
-		codecs := serializer.NewCodecFactory(scheme.Scheme, serializer.EnableStrict)
-		obj, _, err := codecs.UniversalDeserializer().Decode(encryptedFile, &schema.GroupVersionKind{
-			Group:   secretsv1alpha1.GroupVersion.Group,
-			Version: SecretApiVersion,
-			Kind:    "EncryptedSecret",
-		}, nil)
-		if err != nil {
-			if ok, _ := regexp.MatchString("no kind(.*)is registered for version", err.Error()); ok {
-				panic("no kind(.*)is registered for version")
-			}
-			panic(err)
-		}
-
-		// convert the runtimeObj to encryptedSecret object
-		encryptedSecret, ok := obj.(*secretsv1alpha1.EncryptedSecret)
-		if !ok {
-			// should never happen
-			panic("failed to convert runtimeObject to encryptedSecret")
+			return fmt.Errorf("error parsing encryptedSecret %s", err.Error())
 		}
 
 		// get the decryptedSecret
-		decryptedObj, err := providers.DecodeAndDecrypt(encryptedSecret)
+		decryptedObj, err := providers.DecodeAndDecrypt(&objs.EncryptedSecret)
 		if err != nil {
 			return fmt.Errorf("failed to decrypt value for %s", err.Error())
 		}
@@ -95,17 +74,36 @@ var editCmd = &cobra.Command{
 			return fmt.Errorf("error encrypting new secrets %s", err)
 		}
 
-		// write the contents to yaml
+		// yamlData holds the final yaml to be written to the file
+		var yamlData []byte
+
 		newEncrypted, err := yaml.Marshal(&encryptedObj)
 		if err != nil {
 			return fmt.Errorf("error marshaling encryptedSecret %s", err.Error())
 		}
-
 		// remove status field from the object
 		result := utils.RemoveStatus(newEncrypted)
 
+		yamlData = append(yamlData, result...)
+
+		for _, k8sobj := range objs.Objects {
+			// decode the object
+			decode := scheme.Codecs.UniversalDeserializer().Decode
+			decodedObj, _, _ := decode([]byte(k8sobj), nil, nil)
+
+			// marshal the object
+			objData, err := yaml.Marshal(decodedObj)
+			if err != nil {
+				return fmt.Errorf("error marshaling object %s", err.Error())
+			}
+
+			// Append the separator '---' and the object data
+			yamlData = append(yamlData, []byte("---\n")...)
+			yamlData = append(yamlData, objData...)
+		}
+
 		// finally, write the encryptedSecret yaml
-		err = os.WriteFile(fileName, result, 0600)
+		err = os.WriteFile(fileName, yamlData, 0600)
 		if err != nil {
 			return fmt.Errorf("error writing EncryptedSecret %s", err)
 		}
