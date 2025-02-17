@@ -14,12 +14,10 @@ import (
 )
 
 var creationTimeStampRegexp *regexp.Regexp
-var statusRegexp *regexp.Regexp
 
 func init() {
 
 	creationTimeStampRegexp = regexp.MustCompile(`.*creationTimestamp.*\n`)
-	statusRegexp = regexp.MustCompile(`status:[\s\S]*?(?:---|$)`)
 	createCmd.Flags().StringVarP(&Provider, "provider", "p", "", "provider to use (required)")
 	_ = createCmd.MarkFlagRequired("provider")
 	createCmd.Flags().StringVarP(&Filename, "filename", "f", "", "filename to use (required)")
@@ -63,6 +61,8 @@ var createCmd = &cobra.Command{
 		}
 
 		yaml := utils.RemoveStatus(newEncrypted)
+		yaml = creationTimeStampRegexp.ReplaceAll(yaml, nil)
+
 		err = os.WriteFile(Filename, yaml, 0600)
 		if err != nil {
 			return fmt.Errorf("error writing EncryptedSecret %s", err)
