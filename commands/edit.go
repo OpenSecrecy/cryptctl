@@ -7,7 +7,6 @@ import (
 	"os/exec"
 	"regexp"
 
-	"github.com/opensecrecy/cryptctl/commands/utils"
 	"github.com/opensecrecy/encrypted-secrets/pkg/providers"
 	"github.com/spf13/cobra"
 	"k8s.io/client-go/kubernetes/scheme"
