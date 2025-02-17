@@ -81,7 +81,10 @@ var editCmd = &cobra.Command{
 		if err != nil {
 			return fmt.Errorf("error marshaling encryptedSecret %s", err.Error())
 		}
-		yamlData = append(yamlData, newEncrypted...)
+		// remove status field from the object
+		result := utils.RemoveStatus(newEncrypted)
+
+		yamlData = append(yamlData, result...)
 
 		for _, k8sobj := range objs.Objects {
 			// decode the object
@@ -99,11 +102,8 @@ var editCmd = &cobra.Command{
 			yamlData = append(yamlData, objData...)
 		}
 
-		// remove status field from the object
-		result := utils.RemoveStatus(newEncrypted)
-
 		// finally, write the encryptedSecret yaml
-		err = os.WriteFile(fileName, result, 0600)
+		err = os.WriteFile(fileName, yamlData, 0600)
 		if err != nil {
 			return fmt.Errorf("error writing EncryptedSecret %s", err)
 		}
