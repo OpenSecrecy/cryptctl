@@ -14,6 +14,7 @@ import (
 	"k8s.io/client-go/kubernetes/scheme"
 	"sigs.k8s.io/yaml"
 
+	utils "github.com/opensecrecy/cryptctl/commands/utils"
 	secretsv1alpha1 "github.com/opensecrecy/encrypted-secrets/api/v1alpha1"
 )
 
@@ -100,9 +101,9 @@ var editCmd = &cobra.Command{
 			return fmt.Errorf("error marshaling encryptedSecret %s", err.Error())
 		}
 
-		// just a simple hack to remove status field from the yaml
-		re := regexp.MustCompile(`status:[\s\S]*?(?:---|$)`)
-		result := re.ReplaceAll(newEncrypted, nil)
+		// remove status field from the object
+		result := utils.RemoveStatus(newEncrypted)
+
 		// finally, write the encryptedSecret yaml
 		err = os.WriteFile(fileName, result, 0600)
 		if err != nil {

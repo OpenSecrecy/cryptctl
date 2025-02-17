@@ -7,6 +7,7 @@ import (
 	"github.com/spf13/cobra"
 	"sigs.k8s.io/yaml"
 
+	utils "github.com/opensecrecy/cryptctl/commands/utils"
 	secretsv1alpha1 "github.com/opensecrecy/encrypted-secrets/api/v1alpha1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
@@ -37,7 +38,7 @@ var createCmd = &cobra.Command{
 			},
 		}
 
-		// set some sample labels
+		// set some default labels
 		sampleEncryptedSecret.SetLabels(map[string]string{
 			"app.kubernetes.io/name":       "encryptedsecret",
 			"app.kubernetes.io/part-of":    "encryted-secrets",
@@ -55,7 +56,8 @@ var createCmd = &cobra.Command{
 			return fmt.Errorf("error marshaling encryptedSecret %s", err.Error())
 		}
 
-		err = os.WriteFile(Filename, newEncrypted, 0600)
+		yaml := utils.RemoveStatus(newEncrypted)
+		err = os.WriteFile(Filename, yaml, 0600)
 		if err != nil {
 			return fmt.Errorf("error writing EncryptedSecret %s", err)
 		}
