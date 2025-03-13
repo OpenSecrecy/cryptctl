@@ -18,9 +18,7 @@ import (
 	secretsv1alpha1 "github.com/opensecrecy/encrypted-secrets/api/v1alpha1"
 )
 
-var (
-	whitespaceRegexp *regexp.Regexp
-)
+var whitespaceRegexp = regexp.MustCompile(`\s+`)
 
 func init() {
 	rootCmd.AddCommand(editCmd)
@@ -168,10 +166,9 @@ func editObjects(data []byte) ([]byte, error) {
 }
 
 func runEditor(filename string) error {
-	whitespaceRegexp = regexp.MustCompile(`\s+`)
 	editor := os.Getenv("EDITOR")
 	if editor == "" {
-		return fmt.Errorf("nso $EDITOR set")
+		return fmt.Errorf("no $EDITOR set")
 	}
 
 	// deal with an editor that has options.
